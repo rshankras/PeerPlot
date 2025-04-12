@@ -1,2 +1,2 @@
 # PeerPlot
- Collabarative Story telling
+ Collabarative Stort telling
