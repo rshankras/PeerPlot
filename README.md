@@ -4,7 +4,7 @@
 
 PeerPlot is a collaborative storytelling application that lets multiple users create stories together in real-time, even without constant internet connectivity. Users can add entries to an evolving narrative, suggest plot twists, and browse through story history - all while seamlessly syncing across devices.
 
-[![PeerPlot App](app_screenshot_thumb.png)](app_screenshot.png)
+<img src="app_screenshot.png" width="300" alt="PeerPlot App">
 
 ## 🚀 Why This Matters for Developers
 
