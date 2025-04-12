@@ -13,7 +13,6 @@ PeerPlot demonstrates how Couchbase Lite solves real-world collaboration challen
 - **Offline-first sync** for uninterrupted creativity (planes, remote areas, spotty Wi-Fi)
 - **Zero-server architecture** using direct P2P communication
 - **Automatic conflict resolution** for seamless merging of story contributions
-- **Enterprise-ready security** with TLS encryption
 
 > "What if your app worked as smoothly offline as it does online?"
 
@@ -25,14 +24,12 @@ PeerPlot demonstrates how Couchbase Lite solves real-world collaboration challen
 | ⚡ **Real-Time Updates** | LiveQuery for instant UI refresh |
 | ✈️ **Offline-First** | Local database persistence |
 | 🤝 **Conflict Resolution** | Custom merging algorithm |
-| 🔒 **Secure Sync** | TLS encryption for P2P connections |
 | 📚 **Story History** | Query API for filtered data access |
 
 ## 🛠️ Tech Stack Deep Dive
 
 ### Core Frameworks
 - **SwiftUI**: For building the modern, responsive UI
-- **Combine**: For reactive data handling and UI updates
 - **Couchbase Lite**: For document storage and sync
 - **Network.framework**: For peer-to-peer device discovery and connectivity
 
@@ -72,9 +69,9 @@ app.start()
 ## 📥 Getting Started
 
 ### Requirements
-- iOS 16.0+
-- Xcode 15.0+
-- Swift 5.9+
+- iOS 18.0+
+- Xcode 16.0+
+- Swift 5.0+
 - Couchbase Lite Framework (Enterprise Edition)
 
 ### Download Dependencies
@@ -87,7 +84,7 @@ app.start()
 3. Build and run on a simulator or device
 
 ### Testing Peer-to-Peer Sync
-For the best experience, run the app on two physical devices on the same network to see real-time synchronization in action.
+For the best experience, run the app on two devices (simuator or physical devices) on the same network to see real-time synchronization in action.
 
 ## Demo App Limitations
 
@@ -97,15 +94,7 @@ This is a demonstration app showcasing Couchbase Lite's peer-to-peer synchroniza
 - The conflict resolution system is optimized for storytelling use cases
 - Device discovery works best on local networks
 
-## 🔮 Future Opportunities
-
-How this demo could be extended with Couchbase Capella:
-
-- Add AI-generated plot suggestions using vector search
-- Enable cloud backup for archived stories
-- Implement analytics for popular story trends
-
-## 📚 Resources & Inspiration
+## 📚 Resources 
 
 This demo app was built with help from the following resources:
 
