@@ -33,11 +33,25 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		037A0D9F2DAAC33F00B12541 /* Exceptions for "PeerPlot" folder in "Embed Frameworks" phase from "PeerPlot" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			attributesByRelativePath = {
+				Framework/CouchbaseLiteSwift.xcframework = (CodeSignOnCopy, RemoveHeadersOnCopy, );
+			};
+			buildPhase = 03F22BFD2DA8FEF700CC2EC7 /* Embed Frameworks */;
+			membershipExceptions = (
+				Framework/CouchbaseLiteSwift.xcframework,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		03F22B2A2DA8F30000CC2EC7 /* PeerPlot */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				036DC5BF2DA93A460072FDCB /* Exceptions for "PeerPlot" folder in "PeerPlot" target */,
+				037A0D9F2DAAC33F00B12541 /* Exceptions for "PeerPlot" folder in "Embed Frameworks" phase from "PeerPlot" target */,
 			);
 			path = PeerPlot;
 			sourceTree = "<group>";
