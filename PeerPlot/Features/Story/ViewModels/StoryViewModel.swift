@@ -6,42 +6,36 @@
 //
 
 import SwiftUI
-import Combine
 
-class StoryViewModel: ObservableObject {
-    // MARK: - Published Properties
-    @Published var storyEntries: [StoryEntry] = []
-    @Published var authorName: String = ""
-    @Published var newEntryText: String = ""
-    @Published var isSubmitting: Bool = false
-    @Published var showAuthorNamePrompt: Bool = false
-    @Published var storyHistoryItems: [StoryHistoryItem] = []
-    @Published var showArchivePrompt = false
-    @Published var archiveTitle = ""
+@Observable
+class StoryViewModel {
+    // MARK: - Properties
+    var authorName: String = ""
+    var newEntryText: String = ""
+    var isSubmitting: Bool = false
+    var showAuthorNamePrompt: Bool = false
+    var storyHistoryItems: [StoryHistoryItem] = []
+    var showArchivePrompt = false
+    var archiveTitle = ""
     
     // MARK: - Private Properties
-    private var cancellables = Set<AnyCancellable>()
     private let databaseManager = DatabaseManager.shared
+    
+    var storyEntries: [StoryEntry] {
+        databaseManager.storyEntries
+    }
     
     // MARK: - Lifecycle
     init() {
         // Load saved author name
         authorName = UserDefaults.standard.string(forKey: "storyAuthorName") ?? ""
-        
-        // Subscribe to story entries
-        databaseManager.storyEntriesPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] entries in
-                self?.storyEntries = entries
-                LogManager.info("Received \(entries.count) story entries from publisher",category: .ui)
-            }
-            .store(in: &cancellables)
-        
+                
         // Force load story entries immediately 
         databaseManager.loadStoryEntries()
         
         // Check if we need to prompt for author name
         showAuthorNamePrompt = authorName.isEmpty
+    
     }
     
     // MARK: - Story Entry Management

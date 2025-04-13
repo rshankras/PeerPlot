@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StoryHistoryView: View {
     // MARK: - Properties
-    @ObservedObject var viewModel: StoryViewModel
+    let viewModel: StoryViewModel
     @Environment(\.dismiss) private var dismiss
     
     // MARK: - Main Body

@@ -10,8 +10,8 @@ import SwiftUI
 struct StoryHistoryDetailView: View {
     // MARK: - Properties
     @Environment(\.dismiss) private var dismiss
-    @ObservedObject var viewModel: StoryViewModel
     @State private var storyEntries: [StoryEntry] = []
+    let viewModel: StoryViewModel
     let storyId: String
     let title: String
     

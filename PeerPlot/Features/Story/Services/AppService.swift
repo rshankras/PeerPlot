@@ -11,7 +11,6 @@ import Foundation
 import Network
 import UIKit
 import CouchbaseLiteSwift
-import Combine
 
 final class AppService {
     private let name: String
@@ -32,8 +31,6 @@ final class AppService {
 
     private let networkMonitor = NWPathMonitor()
     private let networkQueue = DispatchQueue(label: "NetworkQueue", target: .global())
-
-    private var cancellables = Set<AnyCancellable>()
     
     var endpoint: AppService.Endpoint? {
         didSet {

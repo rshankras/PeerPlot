@@ -11,7 +11,7 @@ import SwiftUI
 struct StoryView: View {
     
     // MARK: - Properties
-    @StateObject private var viewModel = StoryViewModel()
+    @State private var viewModel = StoryViewModel()
     @State private var showRandomTwist = false
     @State private var showNewStoryConfirmation = false
     
@@ -314,7 +314,7 @@ struct StoryView: View {
                     Image(systemName: "arrow.up.circle.fill")
                         .font(.system(size: 28))
                         .foregroundColor(viewModel.newEntryText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?
-                            AppTheme.Colors.textSecondary.opacity(0.3) : AppTheme.Colors.primary)
+                                         AppTheme.Colors.textSecondary.opacity(0.3) : AppTheme.Colors.primary)
                 }
                 .disabled(viewModel.newEntryText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || viewModel.isSubmitting)
             }

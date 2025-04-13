@@ -7,9 +7,9 @@
 
 import Foundation
 import CouchbaseLiteSwift
-import Combine
 import SwiftUI
 
+@Observable
 class DatabaseManager {
     // Singleton instance
     static let shared = DatabaseManager()
@@ -23,27 +23,22 @@ class DatabaseManager {
     // App instance for P2P sync
     private var syncApp: AppService?
     
-    // Publishers
-    private let storyEntriesSubject = PassthroughSubject<[StoryEntry], Never>()
-    
-    var storyEntriesPublisher: AnyPublisher<[StoryEntry], Never> {
-        storyEntriesSubject.eraseToAnyPublisher()
-    }
+    var storyEntries: [StoryEntry] = []
     
     private init() {
-        LogManager.info("Initializing DatabaseManager...",category: .database)
+        LogManager.info("Initializing DatabaseManager...", category: .database)
         
+        // Initialize properties without using self
         do {
-            // Create or open database
-            self.database = try Database(name: "peerplot")
+            let tempDatabase = try Database(name: "peerplot")
+            let tempCollection = try tempDatabase.defaultCollection()
             
-            // Use default collection - like in the working debug version
-            self.collection = try database.defaultCollection()
+            // Assign to properties after initialization
+            self.database = tempDatabase
+            self.collection = tempCollection
             
-            // Set up document listeners
+            // Now it's safe to use self
             setupListeners()
-            
-            // Set up P2P sync
             setupP2PSync()
         } catch {
             fatalError("Failed to initialize database: \(error.localizedDescription)")
@@ -88,7 +83,7 @@ class DatabaseManager {
             entries.sort { $0.timestamp < $1.timestamp }
             
             LogManager.info("Loaded \(entries.count) story entries",category: .database)
-            storyEntriesSubject.send(entries)
+            storyEntries = entries
         } else {
             // Create empty story document if it doesn't exist
             let storyDoc = MutableDocument(id: "story")
@@ -97,7 +92,7 @@ class DatabaseManager {
             
             try? collection.save(document: storyDoc)
             LogManager.info("Created empty story document")
-            storyEntriesSubject.send([])
+            storyEntries = []
         }
     }
     
@@ -186,7 +181,6 @@ class DatabaseManager {
             LogManager.info("Created new empty story",category: .database)
             
             // Notify subscribers that the story is now empty
-            storyEntriesSubject.send([])
             return true
         } catch {
             LogManager.error("Error creating new story: \(error.localizedDescription)",category: .database)
