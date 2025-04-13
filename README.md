@@ -24,7 +24,6 @@ PeerPlot demonstrates how Couchbase Lite solves real-world collaboration challen
 | ⚡ **Real-Time Updates** | LiveQuery for instant UI refresh |
 | ✈️ **Offline-First** | Local database persistence |
 | 🤝 **Conflict Resolution** | Custom merging algorithm |
-| 📚 **Story History** | Query API for filtered data access |
 
 ## 🛠️ Tech Stack Deep Dive
 
@@ -78,6 +77,23 @@ app.start()
 1. Register and download Couchbase Lite Enterprise Edition from [Couchbase Downloads](https://www.couchbase.com/downloads/)
 2. Add the downloaded framework to the project's Frameworks directory
 
+### Setting Up Credentials for P2P Sync
+
+Before running the app, you'll need to generate TLS credentials for secure device-to-device communication:
+
+1. Run the included script to generate the required certificate files:
+   ```bash
+   ./gen-credentials.sh
+   ```
+
+2. This script creates:
+   - A .p12 identity file for your device's identification
+   - A .der certificate file for trust verification
+
+3. These files needs to be copied under Services -> Security -> Resources folder.
+
+> **Note**: For development purposes, the script creates self-signed certificates. In a production environment, you would use properly validated certificates from a trusted authority.
+
 ### Running the App
 1. Clone the repository
 2. Open PeerPlot.xcodeproj in Xcode
@@ -102,16 +118,6 @@ This demo app was built with help from the following resources:
 - [Couchbase P2P Sync Solutions](https://www.couchbase.com/solutions/peer-to-peer/) - Official documentation on peer-to-peer sync capabilities
 - [Building P2P Apps with Couchbase Mobile](https://www.youtube.com/watch?v=k0eGxp6YmpU) - YouTube tutorial on building peer-to-peer applications
 - [Couchbase P2P Sync Demo](https://www.youtube.com/watch?v=4J1-B6lyUcA) - Video demonstration of peer-to-peer synchronization
-
-## 👥 Community Contributions Welcome!
-
-Found a bug? Have an idea?
-
-- 🍴 Fork the repo
-- 📝 Open an issue
-- 🔄 Submit a PR
-
-Let's build better stories together!
 
 ## License
 
